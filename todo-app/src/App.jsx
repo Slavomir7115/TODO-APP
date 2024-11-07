@@ -1,4 +1,5 @@
 import Todo from "./components/Todo"
+import "./index.css"
 
 
 const App = () => {
