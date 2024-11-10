@@ -14,17 +14,19 @@ const Todo = () => {
   }
 
   return (
-    <div className="w-screen h-screen flex align-middle justify-center">
-      <div className="w-10 h-10 bg-red-600">
-        <h1>TODO APP</h1>
-        <form action="" onSubmit={addTodo}>
-          <input
-            required
-            onChange={(e) => settodo(e.target.value)}
-            type="text"
-          />
-          <button type="submit">Submit</button>
-        </form>
+    <div className="h-screen w-screen bg-gradient-to-r from-gray-900 to-blue-950 flex items-center justify-center gap-20 text-gray-100">
+      <div className="h-[600px] w-[1000px] border-none rounded-lg bg-gray-900 shadow-md p-20">
+        <div>
+          <h1>Todo app</h1>
+          <form action="" onSubmit={addTodo}>
+            <input
+              required
+              onChange={(e) => settodo(e.target.value)}
+              type="text"
+            />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
 
         {todos.map((item, index) => (
           <div>
