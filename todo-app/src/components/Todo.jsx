@@ -58,13 +58,10 @@ const Todo = () => {
           </form>
         </div>
 
-        <div className="w-full h-full flex flex-col justify-start items-center gap-10 overflow-y-auto">
+        <div className="w-full h-full flex flex-col justify-start items-center gap-5 overflow-y-auto">
           <h2 className="text-3xl">Your tasks</h2>
           {todos.map((item, index) => (
-            <div
-              key={index}
-              className="flex gap-10 justify-center items-center"
-            >
+            <div key={index} className="flex gap-5 justify-center items-center">
               <input
                 type="checkbox"
                 id={`inputcheck-${index}`}
