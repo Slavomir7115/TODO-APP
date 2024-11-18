@@ -1,14 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Todo = () => {
   const [todo, settodo] = useState("");
   const [todos, settodos] = useState([]);
 
+  useEffect(() => {
+    const savedTodosString = localStorage.getItem("todos");
+    if (savedTodosString) {
+      try {
+        const savedTodos = JSON.parse(savedTodosString);
+        console.log(savedTodos);
+        settodos(savedTodos);
+      } catch (error) {
+        console.error("Problem with parse", error);
+      }
+    } else {
+      console.log("no tasks in local storage.");
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+    console.log(todos);
+  }, [todos]);
+
   function addTodo(e) {
     e.preventDefault();
-    settodos([todo, ...todos]);
-    settodo("");
+    if (todo) {
+      settodos((prevTodos) => [todo, ...prevTodos]);
+      settodo("");
+    }
   }
+
   function deleteTodo(indexToDelete) {
     settodos(todos.filter((_, index) => index !== indexToDelete));
   }
