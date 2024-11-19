@@ -2,26 +2,21 @@ import { useEffect, useState } from "react";
 
 const Todo = () => {
   const [todo, settodo] = useState("");
-  const [todos, settodos] = useState([]);
-
-  useEffect(() => {
+  const [todos, settodos] = useState(() => {
     const savedTodosString = localStorage.getItem("todos");
     if (savedTodosString) {
       try {
-        const savedTodos = JSON.parse(savedTodosString);
-        console.log(savedTodos);
-        settodos(savedTodos);
+        return JSON.parse(savedTodosString);
       } catch (error) {
         console.error("Problem with parse", error);
       }
-    } else {
-      console.log("no tasks in local storage.");
     }
-  }, []);
+    return [];
+  });
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
-    console.log(todos);
+    console.log("updated local storage");
   }, [todos]);
 
   function addTodo(e) {
